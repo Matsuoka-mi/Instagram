@@ -135,7 +135,7 @@ class PostTableViewCell: UITableViewCell {
         self.captionLabel.text = "\(postData.name!) : \(postData.caption!)"
         
         //課題---------------------------
-        self.komentLabel.text = "\(postData.komentname!) : \(postData.koment!)"
+        self.komentLabel.text = "\(postData.komentname) : \(postData.koment)"
         //課題---------------------------
         
         

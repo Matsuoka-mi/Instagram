@@ -20,8 +20,6 @@ class PostData: NSObject {
 
         let postDic = document.data()
         
-     
-        
         self.name = postDic["name"] as? String
 
         self.caption = postDic["caption"] as? String
