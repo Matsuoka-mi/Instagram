@@ -76,9 +76,22 @@ class PostTableViewCell: UITableViewCell {
         
        
         //課題---------------------------
-        let komentkoment = postData.koment
-    //    komentLabel.text = "\(String(describing: postData.komentname)) : \(postData.koment)"
-        komentLabel.text = "\(komentkoment)"
+        
+
+        let postDic = [
+          
+           "koment": koment.text
+         
+           
+           ] as [String : Any]
+       
+        
+       
+        
+        
+        let komentnaiyou = postData.koment
+ //      komentLabel.text = "\(String(describing: postData.komentname)) : \(postData.koment)"
+        komentLabel.text = "\(komentnaiyou)"
          //課題---------------------------
       
         

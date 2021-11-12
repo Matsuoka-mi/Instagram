@@ -7,7 +7,7 @@
 
 import UIKit
 import Firebase
-import Firebase
+//import Firebase
 import SVProgressHUD
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -186,74 +186,33 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //セル内のボタンがタップされた時に呼ばれるメソッド
         //第二引数のUIEvent型のevent引数からUITouch型のタッチ情報を取り出す
-     @objc func komenttoukouButton(_ sender: UIButton, forEvent event: UIEvent) {
-            print("DEBUG_PRINT: 投稿ボタンがタップされました。")
-          
-     //   (at:)メソッドでタッチした座標がtableView内のどのindexPath位置になるのか取得。
+    @objc func komenttoukouButton(_ sender: UIButton, forEvent event: UIEvent) {
         
-    //    let touch = event.allTouches?.first
-    //     let point = touch!.location(in: self.tableView)
-    //     let indexPath = tableView.indexPathForRow(at: point)
-        
-        //配列からタップされたインデックスのデータを取り出す
-        //取得したindexPathを使って、postArray[indexPath!.row]でタップしたセルの投稿データ(postData)を取得できる
-     
-        
-     //   let postData = postKomentArray[]
-        
-        
-        //   @IBAction func toukou(_ sender: Any) {
-    //消える/////////////////////////////////////////////////
-        let postsRefkoment = Firestore.firestore().collection(Const.PostPath).order(by: "date" , descending: true)
-        
-        listener = postsRefkoment.addSnapshotListener() { (querySnapshot, error) in
-            if let error = error {
-                print("DEBUG_PRINT: snapshotの取得が失敗しました。 \(error)")
-                return
-            }
-            //取得したdocumentをもとにPostDataを作成し、postArrayの配列にする。
-            //クロージャの引数のquerySnapshotに最新のデータが入っている。そのdocumentsプロパティにドキュメント（QueryDocumentsSnapshot）の一覧が配列の形で入っている。
-            //この配列をPostData（投稿データ）の配列に変換しpostArrayに格納。
-            
-            //mapメソッドは配列の要素を変換して新しい配列を作成するメソッド。
-            //mapメソッドのクロージャの引数（document)で変換元の配列要素を受け取り、変換した要素をクロージャの戻り値（return postData)で返却することで配列を変換できる。
-            
-            self.postKomentArray = querySnapshot!.documents.map { document in
-                print("DEBUG_PRINT: document取得 \(document.documentID)")
-                let postData = PostData(document: document)
-                return postData        //消える/////////////////////////////////////////////////
+              let postRef = Firestore.firestore().collection(Const.PostPath).document()
+                 
                  //HUDで投稿処理中の表示を開始
                  SVProgressHUD.show()
                  
              
                     
-                    let komentname = Auth.auth().currentUser?.displayName
-                    
+                     let komentname = Auth.auth().currentUser?.displayName
+                  
+        
                      let postDic = [
-                        "komentname": komentname!,
-            //            "koment": self.komenttextField.text!,
+                         "komentname": komentname!,
                     
+                      
                         
-                       ] as [String : Any]
-   //     postsRefkoment.setData(postDic)
+                        ] as [String : Any]
+                     postRef.setData(postDic)
                      
                      //HUDで投稿完了を表示
                      SVProgressHUD.showSuccess(withStatus: "投稿しました")
                      
                      //投稿処理が完了したので先頭画面に戻る
-                    UIApplication.shared.windows.first{ $0.isKeyWindow }?.rootViewController?.dismiss(animated: true, completion: nil)
+                     UIApplication.shared.windows.first{ $0.isKeyWindow }?.rootViewController?.dismiss(animated: true, completion: nil)
                
-               
-                     
-     }
-    
 
-            }
-            
-          
         
-    
-  
-
-     }
+    }
 }
