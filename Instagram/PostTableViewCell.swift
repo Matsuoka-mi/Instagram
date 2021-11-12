@@ -78,13 +78,7 @@ class PostTableViewCell: UITableViewCell {
         //課題---------------------------
         
 
-        let postDic = [
-          
-           "koment": koment.text
-         
-           
-           ] as [String : Any]
-       
+     
         
        
         

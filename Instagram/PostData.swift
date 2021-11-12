@@ -10,8 +10,8 @@ class PostData: NSObject {
     var isLiked: Bool = false
     
     //課題----------------------------------
- //   var koment: [String] = []
-    var koment: String?
+    var koment: [String] = []
+//    var koment: String?
     var komentname: String?
     var komentkinyuu: Bool = false
     
@@ -29,11 +29,11 @@ class PostData: NSObject {
         //課題----------------------------------
        
         self.komentname = postDic["komentname"] as? String
-        self.koment = postDic["koment"] as? String
+    //  self.koment = postDic["koment"] as? String
         
- //       if let koment = postDic["koment"] as? [String] {
- //           self.koment = koment
- //       }
+        if let koment = postDic["koment"] as? [String] {
+            self.koment = koment
+        }
         
         //課題----------------------------------
 
