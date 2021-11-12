@@ -7,6 +7,8 @@
 
 import UIKit
 import Firebase
+import Firebase
+import SVProgressHUD
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -14,6 +16,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //投稿データを格納する配列
     var postArray: [PostData] = []
+    
+    //課題------
+    var postKomentArray: [PostData] = []
+    
     
     //Firestoreのリスナー Firestoreのデータ更新の監視を行うためのリスナー
     var listener: ListenerRegistration?
@@ -67,6 +73,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     
                 }
                 
+                //課題----------
+                 self.postKomentArray = querySnapshot!.documents.map { document in
+                      print("DEBUG_PRINT: koment取得 \(document.documentID)")
+                    let postDatakoment = PostData(document: document)
+                    return postDatakoment
+            }
+                
                 //最新のデータを元にしたpostArrayが作成できたらtableViewをreloadData()
                 //TableViewの表示を更新する
                 self.tableView.reloadData()
@@ -75,6 +88,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
     }
+    
     
     //viewWillDisappear(_:)メソッドはホーム画面が閉じられるときに呼ばれる。リスナーに対しremove()メソッドを実行することで監視を停止。
     
@@ -93,14 +107,17 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return postArray.count
+        return postKomentArray.count
+        
         
     }
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //セルを取得してデータを設定する
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PostTableViewCell
         cell.setPostData(postArray[indexPath.row])
-        print("data: \(postArray[indexPath.row])")
         
         //セル内のボタンのアクションをソースコードで設定する
         //addTarget(_:action:for:)メソッドが青い線でActionを設定する代わりになる
@@ -110,9 +127,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //タップイベントの中にはボタンタップ時の画面上の座標位置などが格納されている。
         cell.likeButton.addTarget(self, action:#selector(handleButton(_:forEvent:)), for: .touchUpInside)
         
+        cell.komentButton.addTarget(self, action:#selector(komenttoukouButton(_:forEvent:)), for: .touchUpInside)
         
         return cell
     }
+    
+    
+ 
     
 //セル内のボタンがタップされた時に呼ばれるメソッド
     //第二引数のUIEvent型のevent引数からUITouch型のタッチ情報を取り出す
@@ -158,16 +179,81 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
+   
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
+    //課題-----------------------------------------------
+    
+    //セル内のボタンがタップされた時に呼ばれるメソッド
+        //第二引数のUIEvent型のevent引数からUITouch型のタッチ情報を取り出す
+     @objc func komenttoukouButton(_ sender: UIButton, forEvent event: UIEvent) {
+            print("DEBUG_PRINT: 投稿ボタンがタップされました。")
+          
+     //   (at:)メソッドでタッチした座標がtableView内のどのindexPath位置になるのか取得。
+        
+    //    let touch = event.allTouches?.first
+    //     let point = touch!.location(in: self.tableView)
+    //     let indexPath = tableView.indexPathForRow(at: point)
+        
+        //配列からタップされたインデックスのデータを取り出す
+        //取得したindexPathを使って、postArray[indexPath!.row]でタップしたセルの投稿データ(postData)を取得できる
+     
+        
+     //   let postData = postKomentArray[]
+        
+        
+        //   @IBAction func toukou(_ sender: Any) {
+    //消える/////////////////////////////////////////////////
+        let postsRefkoment = Firestore.firestore().collection(Const.PostPath).order(by: "date" , descending: true)
+        
+        listener = postsRefkoment.addSnapshotListener() { (querySnapshot, error) in
+            if let error = error {
+                print("DEBUG_PRINT: snapshotの取得が失敗しました。 \(error)")
+                return
+            }
+            //取得したdocumentをもとにPostDataを作成し、postArrayの配列にする。
+            //クロージャの引数のquerySnapshotに最新のデータが入っている。そのdocumentsプロパティにドキュメント（QueryDocumentsSnapshot）の一覧が配列の形で入っている。
+            //この配列をPostData（投稿データ）の配列に変換しpostArrayに格納。
+            
+            //mapメソッドは配列の要素を変換して新しい配列を作成するメソッド。
+            //mapメソッドのクロージャの引数（document)で変換元の配列要素を受け取り、変換した要素をクロージャの戻り値（return postData)で返却することで配列を変換できる。
+            
+            self.postKomentArray = querySnapshot!.documents.map { document in
+                print("DEBUG_PRINT: document取得 \(document.documentID)")
+                let postData = PostData(document: document)
+                return postData        //消える/////////////////////////////////////////////////
+                 //HUDで投稿処理中の表示を開始
+                 SVProgressHUD.show()
+                 
+             
+                    
+                    let komentname = Auth.auth().currentUser?.displayName
+                    
+                     let postDic = [
+                        "komentname": komentname!,
+            //            "koment": self.komenttextField.text!,
+                    
+                        
+                       ] as [String : Any]
+   //     postsRefkoment.setData(postDic)
+                     
+                     //HUDで投稿完了を表示
+                     SVProgressHUD.showSuccess(withStatus: "投稿しました")
+                     
+                     //投稿処理が完了したので先頭画面に戻る
+                    UIApplication.shared.windows.first{ $0.isKeyWindow }?.rootViewController?.dismiss(animated: true, completion: nil)
+               
+               
+                     
+     }
+    
+
+            }
+            
+          
+        
+    
+  
+
+     }
 }

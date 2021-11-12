@@ -14,4 +14,5 @@ struct Const {
     //PostPathはFirestore内の投稿データ（投稿者名、キャプション、投稿日時）の保存場所を定義している
     static let PostPath = "posts"
     
+    static let PostPathkoment = "postskoment"
 }

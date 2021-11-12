@@ -65,9 +65,6 @@
                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MT1-E2-jev">
                         <rect key="frame" x="261" y="404" width="46" height="30"/>
                         <state key="normal" title="投稿する"/>
-                        <connections>
-                            <action selector="toukou:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Lqh-ja-p8u"/>
-                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -98,8 +95,9 @@
             <connections>
                 <outlet property="captionLabel" destination="N8B-1c-2Kf" id="ysp-ZU-n9Z"/>
                 <outlet property="dateLabel" destination="adj-Rr-Umn" id="bhO-7H-gi0"/>
-                <outlet property="komentLabel" destination="mSW-OT-TZr" id="Gh6-gR-Ol4"/>
-                <outlet property="komenttextField" destination="fwj-mB-INS" id="S5R-nd-0YH"/>
+                <outlet property="koment" destination="fwj-mB-INS" id="67W-w5-pJ7"/>
+                <outlet property="komentButton" destination="MT1-E2-jev" id="OwJ-xv-zUN"/>
+                <outlet property="komentLabel" destination="mSW-OT-TZr" id="6Yv-SA-RiH"/>
                 <outlet property="likeButton" destination="y1e-e6-45A" id="uts-qC-6XH"/>
                 <outlet property="likeLabel" destination="WuF-77-Pqn" id="tTp-rp-wIa"/>
                 <outlet property="postImageView" destination="ZM6-fy-HZo" id="37X-0z-qKU"/>
