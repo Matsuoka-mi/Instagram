@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 //FirebaseUIのStorage用ライブラリをインポート　UIImageViewクラスのプロパティ、メソッドが使える
 import FirebaseStorageUI
@@ -28,6 +29,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var komentButton: UIButton!
     
     @IBOutlet weak var koment: UITextField!
+    
     
     @IBOutlet weak var komentLabel: UILabel!
     
@@ -58,7 +60,20 @@ class PostTableViewCell: UITableViewCell {
         //キャプションの表示　「投稿者名：キャプション情報」一つの文字列にして表示
         self.captionLabel.text = "\(postData.name!) : \(postData.caption!)"
         
-     
+       //課題-------------------------------
+       
+        
+        var comments = ""
+        for comment in postData.koment {
+            comments += "\(comment)\n"
+        }
+        
+        self.komentLabel.text = comments
+        
+        
+       //課題-------------------------------
+        
+        
         //日時の表示　Dateクラスに入っている日時情報をDateFormatterで文字列に変換する必要。
         //dateFormatプロパティに"yyyy-MM-dd HH:mm"　で　2019-09-12 09:41 と文字列へ変換
         self.dateLabel.text = ""
@@ -83,9 +98,9 @@ class PostTableViewCell: UITableViewCell {
        
         
         
-        let komentnaiyou = postData.koment
+  //      let komentnaiyou = postData.koment
  //      komentLabel.text = "\(String(describing: postData.komentname)) : \(postData.koment)"
-        komentLabel.text = "\(komentnaiyou)"
+  //      komentLabel.text = "\(komentnaiyou)"
          //課題---------------------------
       
         

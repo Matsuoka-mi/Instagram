@@ -39,8 +39,11 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8B-1c-2Kf">
-                        <rect key="frame" x="28" y="431" width="319" height="120"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8B-1c-2Kf">
+                        <rect key="frame" x="28" y="454" width="265" height="63"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="63" id="Xf6-cN-RVI"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -51,51 +54,42 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSW-OT-TZr">
-                        <rect key="frame" x="30" y="554" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSW-OT-TZr">
+                        <rect key="frame" x="30" y="525" width="263" height="44"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="コメント" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fwj-mB-INS">
-                        <rect key="frame" x="317" y="402" width="32" height="34"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
-                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MT1-E2-jev">
-                        <rect key="frame" x="261" y="404" width="46" height="30"/>
-                        <state key="normal" title="投稿する"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MT1-E2-jev">
+                        <rect key="frame" x="130" y="404" width="138" height="30"/>
+                        <state key="normal" title="コメントを投稿する"/>
                     </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="ZM6-fy-HZo" secondAttribute="trailing" id="0yu-dq-hih"/>
                     <constraint firstItem="ZM6-fy-HZo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="3Ig-22-52G"/>
-                    <constraint firstItem="adj-Rr-Umn" firstAttribute="centerY" secondItem="N8B-1c-2Kf" secondAttribute="centerY" id="5H7-rI-6BB"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="N8B-1c-2Kf" secondAttribute="trailing" constant="66" id="5Qq-Al-iho"/>
                     <constraint firstItem="WuF-77-Pqn" firstAttribute="leading" secondItem="y1e-e6-45A" secondAttribute="trailing" constant="10" id="5RB-19-WEW"/>
-                    <constraint firstItem="mSW-OT-TZr" firstAttribute="top" secondItem="N8B-1c-2Kf" secondAttribute="bottom" constant="10" id="9HH-0y-O66"/>
+                    <constraint firstItem="N8B-1c-2Kf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="Bsa-hc-X0l"/>
                     <constraint firstItem="y1e-e6-45A" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="DOe-Bm-NYB"/>
-                    <constraint firstItem="N8B-1c-2Kf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="HYC-cy-omj"/>
-                    <constraint firstItem="N8B-1c-2Kf" firstAttribute="top" secondItem="y1e-e6-45A" secondAttribute="bottom" constant="10" id="NsT-6t-NMU"/>
-                    <constraint firstItem="fwj-mB-INS" firstAttribute="leading" secondItem="MT1-E2-jev" secondAttribute="trailing" constant="10" id="R7p-fS-tu2"/>
+                    <constraint firstItem="N8B-1c-2Kf" firstAttribute="top" secondItem="y1e-e6-45A" secondAttribute="bottom" constant="15" id="DOx-gf-1mb"/>
                     <constraint firstItem="MT1-E2-jev" firstAttribute="centerY" secondItem="WuF-77-Pqn" secondAttribute="centerY" id="UtF-tV-Azn"/>
                     <constraint firstAttribute="trailingMargin" secondItem="adj-Rr-Umn" secondAttribute="trailing" constant="10" id="Xow-qc-hXl"/>
                     <constraint firstItem="y1e-e6-45A" firstAttribute="top" secondItem="ZM6-fy-HZo" secondAttribute="bottom" constant="10" id="ZLf-Sf-lve"/>
-                    <constraint firstItem="fwj-mB-INS" firstAttribute="centerY" secondItem="WuF-77-Pqn" secondAttribute="centerY" id="daK-bd-3xm"/>
                     <constraint firstItem="adj-Rr-Umn" firstAttribute="leading" secondItem="WuF-77-Pqn" secondAttribute="trailing" constant="10" id="e7E-On-3tE"/>
                     <constraint firstItem="MT1-E2-jev" firstAttribute="leading" secondItem="WuF-77-Pqn" secondAttribute="trailing" constant="10" id="eeB-1r-fIW"/>
                     <constraint firstAttribute="bottomMargin" secondItem="mSW-OT-TZr" secondAttribute="bottom" constant="10" id="iiv-v8-0Gn"/>
                     <constraint firstItem="ZM6-fy-HZo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mJk-HZ-hrh"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="fwj-mB-INS" secondAttribute="trailing" constant="10" id="mrB-SW-WeN"/>
                     <constraint firstItem="WuF-77-Pqn" firstAttribute="centerY" secondItem="y1e-e6-45A" secondAttribute="centerY" id="nbh-7V-ybS"/>
+                    <constraint firstItem="N8B-1c-2Kf" firstAttribute="trailing" secondItem="mSW-OT-TZr" secondAttribute="trailing" id="ofc-aD-Ndd"/>
+                    <constraint firstItem="mSW-OT-TZr" firstAttribute="top" secondItem="N8B-1c-2Kf" secondAttribute="bottom" constant="8" id="oih-NK-0ad"/>
                     <constraint firstItem="mSW-OT-TZr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="qs9-iK-8mW"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="N8B-1c-2Kf" secondAttribute="trailing" constant="10" id="sw2-ib-px4"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="captionLabel" destination="N8B-1c-2Kf" id="ysp-ZU-n9Z"/>
                 <outlet property="dateLabel" destination="adj-Rr-Umn" id="bhO-7H-gi0"/>
-                <outlet property="koment" destination="fwj-mB-INS" id="67W-w5-pJ7"/>
                 <outlet property="komentButton" destination="MT1-E2-jev" id="OwJ-xv-zUN"/>
                 <outlet property="komentLabel" destination="mSW-OT-TZr" id="6Yv-SA-RiH"/>
                 <outlet property="likeButton" destination="y1e-e6-45A" id="uts-qC-6XH"/>

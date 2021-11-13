@@ -7,7 +7,7 @@
 
 import UIKit
 import Firebase
-import Firebase
+
 import SVProgressHUD
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -187,32 +187,49 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //セル内のボタンがタップされた時に呼ばれるメソッド
         //第二引数のUIEvent型のevent引数からUITouch型のタッチ情報を取り出す
     @objc func komenttoukouButton(_ sender: UIButton, forEvent event: UIEvent) {
+        // タップされたセルのインデックスを求める
+        let touch = event.allTouches?.first
+        let point = touch!.location(in: self.tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
         
-             let postRef = Firestore.firestore().collection(Const.PostPath).document()
+        let postData = postArray[indexPath!.row]
+        let alertController = UIAlertController(title: "コメント送信", message: "", preferredStyle: .alert)
+        
+        alertController.addTextField { (textField) in
+              textField.placeholder = "コメントを入力してください"
+        }
+        /// 送信ボタン追加
+        alertController.addAction(UIAlertAction(title: "送信", style: .default, handler: { (action) in
+            let komentname = Auth.auth().currentUser!.displayName!
+            // 入力されたコメント文字を取得
+            let commentText = alertController.textFields![0].text!
+            let comment = "\(komentname) : \(commentText)"
+            let updateValue = FieldValue.arrayUnion([comment])
+            let postRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
+            postRef.updateData(["comments": updateValue])
+            
+        }))
+        
+            // キャンセルボタン追加
+                alertController.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: { (action) in
+                  // キャンセルは何もしない
+                }))
+        
+        present(alertController, animated: true)
+        
+        
+        
+        
+             
                  
-                 //HUDで投稿処理中の表示を開始
-                 SVProgressHUD.show()
                  
              
                     
-                     let komentname = Auth.auth().currentUser?.displayName
-                    let postDic = [
-                        "komentname": komentname!,
-         
-                      
-                        
-                        ] as [String : Any]
-                     postRef.setData(postDic)
-                     
-                     //HUDで投稿完了を表示
-                     SVProgressHUD.showSuccess(withStatus: "投稿しました")
-                     
-                     //投稿処理が完了したので先頭画面に戻る
-                     UIApplication.shared.windows.first{ $0.isKeyWindow }?.rootViewController?.dismiss(animated: true, completion: nil)
-               
-
-               
-
+        
+      
+        
+    
+                  
         
     }
 }
